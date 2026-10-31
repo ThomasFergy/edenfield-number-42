@@ -13,6 +13,8 @@ npm run build    # type-check + production build into dist/
 npm run lint
 ```
 
+Releases are tagged `site-vX.Y.Z`; the latest one is what is live. See the Releases tab on GitHub for what changed in each.
+
 ## Where things are
 
 ```
