@@ -1,4 +1,9 @@
-build/
 .DS_Store
+# LaTeX
+menus/build/
 *.aux
 *.log
+# Website
+node_modules/
+website/dist/
+*.local
