@@ -7,3 +7,4 @@ menus/build/
 node_modules/
 website/dist/
 *.local
+_site/

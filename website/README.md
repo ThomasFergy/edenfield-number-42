@@ -31,12 +31,32 @@ To change wording, prices-free facts, the phone number or the booking link, edit
 Until real photos are added, each image slot shows an on-brand placeholder. In dev mode the
 placeholder shows the filename to use. Full list in [`src/photos/README.md`](src/photos/README.md).
 
-## Deploying
+## Deploying (two designs side by side)
 
-`.github/workflows/deploy-website.yml` builds and publishes `website/dist` to GitHub Pages on
-every push to `main`. Enable it in the repo under Settings → Pages → Source: **GitHub Actions**.
-It also works unchanged on Netlify, Vercel or Cloudflare Pages (build command `npm run build`,
+The deploy workflow publishes both design options to one GitHub Pages site so a client can compare them:
+
+```
+/            chooser page (website/chooser/index.html)
+/classic/    first design, built from the git tag `design-classic`
+/refined/    current design, built from main
+```
+
+Setup, once:
+
+1. Tag the commit that holds the first design: `git tag design-classic <commit>` and `git push origin design-classic`.
+2. Enable Pages in the repo under Settings → Pages → Source: **GitHub Actions**.
+
+The workflow `.github/workflows/deploy-website.yml` runs `scripts/build-pages.sh` on every push to `main`.
+To test the whole thing locally (outputs to `_site/`):
+
+```sh
+CLASSIC_REF=HEAD scripts/build-pages.sh
+```
+
+Note the classic build uses the content as it was at the tag, so later changes to `src/content/site.ts` do not appear in it.
+
+**When the client has chosen:** set `base` in `vite.config.ts` to the repo path (or `/` for a custom domain), replace
+`scripts/build-pages.sh` with a plain `npm run build`, and publish `website/dist` directly. Delete `website/chooser/`.
+
+It also works unchanged on Netlify, Vercel or Cloudflare Pages for a single design (build command `npm run build`,
 output directory `dist`, base directory `website`).
-
-If you serve from a sub-path (e.g. `username.github.io/edenfield-number-42/`) rather than a
-custom domain, set `base: '/edenfield-number-42/'` in `vite.config.ts`.

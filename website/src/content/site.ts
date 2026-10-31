@@ -36,10 +36,18 @@ export const intro = {
 }
 
 export const highlights = [
-  { title: 'Immaculate rooms', text: 'Private bathrooms, fresh linen and a tea & coffee tray in every room.' },
-  { title: 'Breakfast to remember', text: 'Continental or a full cooked breakfast, with bottomless tea and coffee.' },
-  { title: 'Close to the sea', text: 'Under a kilometre to Bispham Beach and a short tram ride to the Tower.' },
-  { title: 'Easy arrival', text: 'Free Wi-Fi, free on-street parking and a warm welcome from your hosts.' },
+  { icon: 'bed', title: 'Immaculate rooms', text: 'Private bathrooms, fresh linen and a tea & coffee tray in every room.' },
+  { icon: 'cup', title: 'Breakfast to remember', text: 'Continental or a full cooked breakfast, with bottomless tea and coffee.' },
+  { icon: 'waves', title: 'Close to the sea', text: 'Under a kilometre to Bispham Beach and a short tram ride to the Tower.' },
+  { icon: 'key', title: 'Easy arrival', text: 'Free Wi-Fi, free on-street parking and a warm welcome from your hosts.' },
+]
+
+export const trust = [
+  { icon: 'star', text: '9.7 Exceptional on Booking.com' },
+  { icon: 'adults', text: 'Adults only' },
+  { icon: 'wifi', text: 'Free Wi-Fi' },
+  { icon: 'car', text: 'Free parking' },
+  { icon: 'pin', text: 'North Shore, Blackpool' },
 ]
 
 export const roomFeatures = [

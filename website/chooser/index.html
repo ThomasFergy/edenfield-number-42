@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#04192b" />
+    <title>Edenfield Number 42 | Choose a design</title>
+    <style>
+      @font-face { font-family: Cinzel; font-weight: 400; src: url(fonts/cinzel-latin-400-normal.woff2) format('woff2'); font-display: swap; }
+      @font-face { font-family: Cinzel; font-weight: 600; src: url(fonts/cinzel-latin-600-normal.woff2) format('woff2'); font-display: swap; }
+      @font-face { font-family: 'EB Garamond'; font-weight: 400; src: url(fonts/eb-garamond-latin-400-normal.woff2) format('woff2'); font-display: swap; }
+      @font-face { font-family: 'EB Garamond'; font-style: italic; font-weight: 400; src: url(fonts/eb-garamond-latin-400-italic.woff2) format('woff2'); font-display: swap; }
+      :root { --navy: #04192b; --navy-2: #0f3357; --gold: #c9a24d; --gold-light: #e9d49a; --cream: #faf6ec; }
+      * { box-sizing: border-box; }
+      html { background: var(--navy); }
+      body {
+        margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 2.5rem 1.25rem;
+        font-family: 'EB Garamond', Georgia, serif; font-size: 1.2rem; line-height: 1.6; color: var(--cream);
+        background: radial-gradient(ellipse 70% 60% at 15% 0%, rgba(15, 51, 87, .9), transparent 70%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(201, 162, 77, .12), transparent 70%), var(--navy);
+      }
+      main { width: min(100%, 960px); text-align: center; }
+      .eyebrow { font-family: Cinzel, serif; font-size: .75rem; letter-spacing: .34em; text-transform: uppercase; color: var(--gold); margin: 0 0 1rem; }
+      h1 { font-family: Cinzel, serif; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: clamp(2rem, 6vw, 3.6rem); margin: 0; background: linear-gradient(100deg, #b88a44, #f4e1a0 40%, #e0aa3e 65%, #fdf0b5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .sub { font-family: Cinzel, serif; letter-spacing: .6em; text-transform: uppercase; font-size: .85rem; color: var(--gold-light); margin: .6rem 0 1.6rem; }
+      .lede { max-width: 46ch; margin: 0 auto 2.6rem; font-style: italic; opacity: .9; }
+      .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; }
+      .card { position: relative; display: flex; flex-direction: column; padding: 2rem 1.9rem 1.8rem; color: inherit; text-decoration: none; background: rgba(2, 17, 32, .55); border: 1px solid rgba(201, 162, 77, .45); outline: 1px solid rgba(201, 162, 77, .2); outline-offset: 5px; transition: transform .3s, border-color .3s, background .3s; }
+      .card:hover, .card:focus-visible { transform: translateY(-4px); border-color: var(--gold); background: rgba(15, 51, 87, .55); }
+      .card:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+      .tag { font-family: Cinzel, serif; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+      .card h2 { font-family: Cinzel, serif; font-weight: 400; text-transform: uppercase; letter-spacing: .14em; font-size: 1.6rem; margin: .5rem 0 .8rem; color: var(--gold-light); }
+      .card p { margin: 0 0 1.2rem; opacity: .9; }
+      .card ul { margin: 0 0 1.6rem; padding: 0; list-style: none; font-size: 1.05rem; opacity: .85; }
+      .card li::before { content: ''; display: inline-block; width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); margin-right: .7em; vertical-align: .2em; }
+      .open { margin-top: auto; font-family: Cinzel, serif; font-size: .75rem; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; color: var(--gold-light); }
+      .open::after { content: ' →'; }
+      .foot { margin: 2.4rem 0 0; font-size: .95rem; opacity: .6; }
+      @media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Website prototype</p>
+      <h1>Edenfield</h1>
+      <p class="sub">Number 42</p>
+      <p class="lede">Two design directions for the guest house website. Open each one, try it on your phone too, and let us know which you prefer.</p>
+      <div class="cards">
+        <a class="card" href="classic/">
+          <span class="tag">Design A</span>
+          <h2>Classic</h2>
+          <p>Clean and understated. Calm, traditional and easy to read.</p>
+          <ul>
+            <li>Split hero with the frontage photo</li>
+            <li>Photo strip and room list</li>
+            <li>Breakfast, reviews and location</li>
+          </ul>
+          <span class="open">View design A</span>
+        </a>
+        <a class="card" href="refined/">
+          <span class="tag">Design B</span>
+          <h2>Refined</h2>
+          <p>More polished and premium, with subtle motion and extra detail.</p>
+          <ul>
+            <li>Animated hero and trust bar</li>
+            <li>Breakfast shown as a menu card</li>
+            <li>Google map and call/book bar on phones</li>
+          </ul>
+          <span class="open">View design B</span>
+        </a>
+      </div>
+      <p class="foot">Prototype for review only.</p>
+    </main>
+  </body>
+</html>

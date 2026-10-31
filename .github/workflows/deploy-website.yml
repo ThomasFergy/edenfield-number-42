@@ -1,9 +1,14 @@
 name: Deploy website
 
+# Publishes both design options to GitHub Pages:
+#   /            chooser page
+#   /classic/    first design (built from the `design-classic` tag)
+#   /refined/    current design (built from main)
+
 on:
   push:
     branches: [main]
-    paths: ['website/**', '.github/workflows/deploy-website.yml']
+    paths: ['website/**', 'scripts/build-pages.sh', '.github/workflows/deploy-website.yml']
   workflow_dispatch:
 
 permissions:
@@ -18,22 +23,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: website
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # need history and tags to build the classic design
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: website/package-lock.json
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
+      - run: scripts/build-pages.sh
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: website/dist
+          path: _site
 
   deploy:
     needs: build

@@ -3,6 +3,7 @@ import { FindUs } from './components/FindUs'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
+import { MobileBar } from './components/MobileBar'
 import { Reviews } from './components/Reviews'
 import { Rooms } from './components/Rooms'
 import { Welcome } from './components/Welcome'
@@ -23,6 +24,7 @@ export default function App() {
         <FindUs />
       </main>
       <Footer />
+      <MobileBar />
     </>
   )
 }
