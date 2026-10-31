@@ -10,7 +10,7 @@ export const site = {
     postcode: 'FY2 9TA',
   },
   phone: { display: '07596 018111', href: 'tel:+447596018111' },
-  hosts: 'Mel & Shaun',
+  hosts: 'Tina & Des',
   bookingUrl: 'https://www.booking.com/hotel/gb/number42.en-gb.html',
   directionsUrl:
     'https://www.google.com/maps/search/?api=1&query=42+King+Edward+Avenue+Blackpool+FY2+9TA',
@@ -28,7 +28,7 @@ export const nav = [
 export const intro = {
   heading: 'Your home by the sea',
   paragraphs: [
-    "Tucked away on a quiet street in North Shore, Edenfield Number 42 is a small guest house run by hosts Mel and Shaun. You're a short stroll from the seafront and the tram, yet far enough from the bustle of the Golden Mile for a proper night's sleep.",
+    "Tucked away on a quiet street in North Shore, Edenfield Number 42 is a small guest house run by hosts Tina and Des. You're a short stroll from the seafront and the tram, yet far enough from the bustle of the Golden Mile for a proper night's sleep.",
     "Rooms are immaculate, beds are comfortable, and breakfast is cooked to order. It's the kind of place guests come back to.",
   ],
 }
