@@ -127,6 +127,6 @@ export const goodToKnow = [
   { label: 'Wi-Fi', value: 'Free throughout' },
   { label: 'Smoking', value: 'Non-smoking' },
   { label: 'Pets', value: 'Not permitted' },
-  { label: 'Children', value: 'Not permitted' },
+  { label: 'Guests', value: 'Adults only' },
   { label: 'Lift', value: 'No lift' },
 ]
