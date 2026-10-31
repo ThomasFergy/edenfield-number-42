@@ -126,7 +126,7 @@ export const goodToKnow = [
   { label: 'Parking', value: 'Free, on-street' },
   { label: 'Wi-Fi', value: 'Free throughout' },
   { label: 'Smoking', value: 'Non-smoking' },
-  { label: 'Pets', value: 'No pets' },
-  { label: 'Guests', value: 'Adults only' },
+  { label: 'Pets', value: 'Not permitted' },
+  { label: 'Children', value: 'Not permitted' },
   { label: 'Lift', value: 'No lift' },
 ]
