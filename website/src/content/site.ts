@@ -14,8 +14,8 @@ export const site = {
   bookingUrl: 'https://www.booking.com/hotel/gb/number42.en-gb.html',
   directionsUrl:
     'https://www.google.com/maps/search/?api=1&query=42+King+Edward+Avenue+Blackpool+FY2+9TA',
-  checkIn: '14:00 – 21:00',
-  checkOut: '08:00 – 10:00',
+  checkIn: '15:30 – 21:00',
+  checkOut: 'Before 10:30',
 } as const
 
 export const nav = [
@@ -126,7 +126,7 @@ export const goodToKnow = [
   { label: 'Parking', value: 'Free, on-street' },
   { label: 'Wi-Fi', value: 'Free throughout' },
   { label: 'Smoking', value: 'Non-smoking' },
-  { label: 'Pets', value: 'Not permitted' },
-  { label: 'Children', value: 'All ages welcome' },
+  { label: 'Pets', value: 'No pets' },
+  { label: 'Guests', value: 'Adults only' },
   { label: 'Lift', value: 'No lift' },
 ]

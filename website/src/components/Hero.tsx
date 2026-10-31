@@ -6,7 +6,7 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="container hero__grid">
         <div className="hero__content">
-          <p className="eyebrow">Blackpool · North Shore</p>
+          <p className="eyebrow">Blackpool · North Shore · Adults Only</p>
           <h1 className="hero__title">
             <span>Edenfield</span>
             <span className="hero__sub">Number 42</span>
