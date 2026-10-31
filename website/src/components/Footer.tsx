@@ -19,6 +19,9 @@ export function Footer() {
             Call or message <a href={site.phone.href}>{site.phone.display}</a>
           </p>
           <p>
+            Email <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+          <p>
             <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer">
               Book on Booking.com
             </a>

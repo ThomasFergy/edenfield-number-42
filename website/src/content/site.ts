@@ -10,6 +10,8 @@ export const site = {
     postcode: 'FY2 9TA',
   },
   phone: { display: '07596 018111', href: 'tel:+447596018111' },
+  // Temporary address: swap for the domain email once the domain is set up.
+  email: 'edenfield42@yahoo.com',
   hosts: 'Tina & Des',
   bookingUrl: 'https://www.booking.com/hotel/gb/number42.en-gb.html',
   directionsUrl:
