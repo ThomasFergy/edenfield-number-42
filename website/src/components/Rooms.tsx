@@ -1,4 +1,4 @@
-import { roomFeatures, rooms, site } from '../content/site'
+import { roomFeatures, roomPhotos, rooms, site } from '../content/site'
 import { Ornament } from './Ornament'
 import { Photo } from './Photo'
 
@@ -12,14 +12,18 @@ export function Rooms() {
           <Ornament />
           <p className="lede">Every room is spotlessly clean, quietly comfortable and equipped for a relaxed stay.</p>
         </header>
-        <ul className="cards">
+        <ul className="mosaic">
+          {roomPhotos.map((p) => (
+            <li key={p.name}>
+              <Photo name={p.name} alt={p.alt} className="mosaic__photo" />
+            </li>
+          ))}
+        </ul>
+        <ul className="roomlist">
           {rooms.map((r) => (
-            <li key={r.name} className="card">
-              <Photo name={r.photo} alt={`${r.name} at Edenfield Number 42`} className="card__photo" />
-              <div className="card__body">
-                <h3>{r.name}</h3>
-                <p>{r.bed}</p>
-              </div>
+            <li key={r.name}>
+              <h3>{r.name}</h3>
+              <span>{r.bed}</span>
             </li>
           ))}
         </ul>

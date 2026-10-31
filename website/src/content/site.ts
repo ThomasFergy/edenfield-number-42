@@ -50,12 +50,20 @@ export const roomFeatures = [
 ]
 
 export const rooms = [
-  { name: 'Standard Twin Room', bed: 'Two single beds', photo: 'room-twin' },
-  { name: 'Double Room', bed: 'One large double bed', photo: 'room-double' },
-  { name: 'Deluxe Double Room', bed: 'One large double bed', photo: 'room-deluxe-double' },
-  { name: 'Deluxe King Room', bed: 'One large double bed', photo: 'room-deluxe-king' },
-  { name: 'King Suite', bed: 'One large double bed', photo: 'room-king-suite' },
-  { name: 'Deluxe King Suite', bed: 'One extra-large double bed', photo: 'room-deluxe-king-suite' },
+  { name: 'Standard Twin Room', bed: 'Two single beds' },
+  { name: 'Double Room', bed: 'One large double bed' },
+  { name: 'Deluxe Double Room', bed: 'One large double bed' },
+  { name: 'Deluxe King Room', bed: 'One large double bed' },
+  { name: 'King Suite', bed: 'One large double bed' },
+  { name: 'Deluxe King Suite', bed: 'One extra-large double bed' },
+]
+
+// Photos shown above the room list (files in src/photos). Not tied to a room type.
+export const roomPhotos = [
+  { name: 'room-1', alt: 'A bedroom with a wooden bed and patterned feature wall' },
+  { name: 'room-2', alt: 'A bedroom with a king bed and two grey armchairs by the window' },
+  { name: 'room-3', alt: 'A bedroom with a view through to the en-suite' },
+  { name: 'bathroom', alt: 'A bright en-suite shower room with heated towel rail' },
 ]
 
 export const breakfast = {
