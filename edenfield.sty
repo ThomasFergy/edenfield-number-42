@@ -1,0 +1,132 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{edenfield}[2026/10/31 Edenfield Number 42 breakfast menus]
+
+\RequirePackage{xcolor}
+\RequirePackage{fontspec}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric,calc}
+\RequirePackage{eso-pic}
+\RequirePackage{microtype}
+
+% ---------------------------------------------------------------- fonts
+\defaultfontfeatures{Ligatures=TeX}
+\newfontfamily\titlefont[Path=/usr/local/texlive/2026/texmf-dist/fonts/truetype/ndiscovered/cinzel/,
+  Extension=.ttf, UprightFont=Cinzel-Regular, BoldFont=Cinzel-Bold,
+  LetterSpace=12]{Cinzel}
+\newfontfamily\labelfont[Path=/usr/local/texlive/2026/texmf-dist/fonts/truetype/ndiscovered/cinzel/,
+  Extension=.ttf, UprightFont=Cinzel-Regular, BoldFont=Cinzel-Bold,
+  LetterSpace=22]{Cinzel}
+\setmainfont{EBGaramond}[Path=/usr/local/texlive/2026/texmf-dist/fonts/opentype/public/ebgaramond/,
+  Extension=.otf, UprightFont=*-Regular, ItalicFont=*-Italic,
+  BoldFont=*-SemiBold, BoldItalicFont=*-SemiBoldItalic]
+
+% ---------------------------------------------------------------- themes
+% \theme is one of: navy | goldprint | navyprint
+\providecommand\theme{navy}
+\definecolor{EFnavybg}{HTML}{04192B}
+\ifx\theme\relax\def\theme{navy}\fi
+\def\EF@a{navy}\def\EF@b{goldprint}\def\EF@c{navyprint}
+\ifx\theme\EF@a
+  \definecolor{EFink}{HTML}{E9D49A}     % body text
+  \definecolor{EFaccent}{HTML}{C9A24D}  % rules, headings
+  \definecolor{EFhead}{HTML}{F1DEA6}    % title
+  \AddToShipoutPictureBG*{\color{EFnavybg}\put(0,0){\rule{\paperwidth}{\paperheight}}}
+\fi
+\ifx\theme\EF@b
+  \definecolor{EFink}{HTML}{D9B85F}
+  \definecolor{EFaccent}{HTML}{C9A24D}
+  \definecolor{EFhead}{HTML}{E2C26C}
+\fi
+\ifx\theme\EF@c
+  \definecolor{EFink}{HTML}{0B0D2B}
+  \definecolor{EFaccent}{HTML}{283098}
+  \definecolor{EFhead}{HTML}{131749}
+\fi
+\color{EFink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% ---------------------------------------------------------------- scale
+\newcommand\menuscale{1}
+\newcommand\sz[1]{\fontsize{\fpeval{#1*\menuscale}pt}{\fpeval{#1*\menuscale*1.28}pt}\selectfont}
+
+% ---------------------------------------------------------------- ornaments
+% a thin rule – diamond – rule divider, width #1
+\newcommand\divider[1]{%
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \def\w{#1}
+    \draw[EFaccent, line width=0.45pt] (-0.5*\w,0) -- (-0.04*\w-0.9mm,0);
+    \draw[EFaccent, line width=0.45pt] (0.04*\w+0.9mm,0) -- (0.5*\w,0);
+    \node[EFaccent, diamond, fill, inner sep=0, minimum size=2mm] at (0,0) {};
+    \node[EFaccent, diamond, draw=EFaccent, line width=0.35pt, inner sep=0, minimum size=3.6mm] at (0,0) {};
+  \end{tikzpicture}}
+
+% title block flanked by rules: \flank{width}{text}
+\newcommand\flank[2]{%
+  \begin{tikzpicture}[baseline=(t.base)]
+    \node[inner sep=0] (t) {#2};
+    \draw[EFaccent, line width=0.45pt] ([xshift=-4mm]t.west) -- ++(-#1,0);
+    \draw[EFaccent, line width=0.45pt] ([xshift=4mm]t.east) -- ++(#1,0);
+    \node[EFaccent, diamond, fill, inner sep=0, minimum size=1.4mm] at ([xshift=-4mm-#1]t.west) {};
+    \node[EFaccent, diamond, fill, inner sep=0, minimum size=1.4mm] at ([xshift=4mm+#1]t.east) {};
+  \end{tikzpicture}}
+
+% double-rule frame with corner ornaments, drawn on current page at (x0,y0)-(x1,y1)
+% arguments in absolute page coords relative to lower-left
+\newcommand\menuframe[4]{%
+  \begin{tikzpicture}[remember picture, overlay, shift={(current page.south west)}]
+    \draw[EFaccent, line width=0.9pt] (#1,#2) rectangle (#3,#4);
+    \draw[EFaccent, line width=0.3pt] ([shift={(2.2mm,2.2mm)}]#1,#2) rectangle ([shift={(-2.2mm,-2.2mm)}]#3,#4);
+    \foreach \cx/\cy in {#1/#2,#1/#4,#3/#2,#3/#4}{%
+      \node[EFaccent, diamond, fill, inner sep=0, minimum size=3.6mm] at (\cx,\cy) {};}
+  \end{tikzpicture}}
+
+% ---------------------------------------------------------------- content
+\newcommand\sectionhead[1]{{\centering
+  {\labelfont\bfseries\sz{15}\color{EFhead}#1\par}\vspace{1.6mm}
+  \divider{18mm}\par}}
+
+\newcommand\dishhead[1]{{\titlefont\sz{10.5}\color{EFaccent}#1\par}}
+
+% allergy note (a layout may override it)
+\newcommand\allergynote{Please advise us of any dietary requirements, allergies or\\
+  intolerances before 18:00 for us to be able to cater to your needs.\\
+  Call or message on \textup{07596 018111}.}
+
+% sign-off (a layout may override it)
+\newcommand\farewell{{\titlefont\sz{13}\color{EFhead}See you in the morning.\par}\vfill}
+
+% the whole menu, typeset to width #1 and height #2
+\newcommand\menubody[2]{%
+  \begin{minipage}[t][#2][s]{#1}
+    \centering
+    \vfill
+    {\titlefont\bfseries\sz{40}\color{EFhead}EDENFIELD\par}
+    \vspace{3mm}
+    \flank{17mm}{\labelfont\sz{16}\color{EFhead}NUMBER 42}\par
+    \vfill
+    {\titlefont\sz{15}\color{EFaccent}Breakfast Menu\par}
+    \vspace{1.2mm}
+    {\itshape\sz{13.5}Served 07:30 -- 09:30\par}
+    \vfill
+    \sectionhead{Continental}
+    \vspace{3mm}
+    {\sz{13}Selection of cereals, toast, pastries,\\ fruit, yoghurt, and juices.\par}
+    \vfill
+    \sectionhead{Cooked}
+    \vspace{2mm}
+    {\itshape\sz{12}Both options are served with toast and\\ bottomless pots of tea and coffee.\par}
+    \vspace{5mm}
+    \dishhead{Full Breakfast}\vspace{1.2mm}
+    {\sz{13}2$\times$ bacon, 2$\times$ sausage, hashbrown, egg,\\ baked beans, mushrooms, and tomatoes.\par}
+    \vspace{4.5mm}
+    \dishhead{For the Smaller Appetite}\vspace{1.2mm}
+    {\sz{13}1$\times$ bacon, 1$\times$ sausage, hashbrown, egg,\\ baked beans, mushrooms, and tomatoes.\par}
+    \vfill
+    \divider{40mm}\par
+    \vspace{3mm}
+    {\itshape\sz{11}\allergynote\par}
+    \vfill
+    \farewell
+  \end{minipage}}
+\endinput

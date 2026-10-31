@@ -1,0 +1,22 @@
+% Table menu – A4 landscape, two A5 portrait cards side by side with a cut line.
+\documentclass[a4paper,landscape]{article}
+\usepackage[margin=0pt]{geometry}
+\usepackage{edenfield}
+\renewcommand\menuscale{0.9}
+% table menus intentionally use shorter wording
+\renewcommand\allergynote{Please advise us of any dietary requirements,\\
+  allergies or intolerances for us to be able to cater to your needs.}
+\renewcommand\farewell{}
+\begin{document}
+\thispagestyle{empty}
+\menuframe{8mm}{8mm}{140.5mm}{202mm}
+\menuframe{156.5mm}{8mm}{289mm}{202mm}
+% centre cut line with tick marks
+\begin{tikzpicture}[remember picture, overlay, shift={(current page.south west)}]
+  \draw[EFaccent!60, dash pattern=on 2pt off 3pt, line width=0.3pt] (148.5mm,0) -- (148.5mm,210mm);
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture, overlay, shift={(current page.south west)}]
+  \node at (74.25mm,105mm)  {\menubody{102mm}{176mm}};
+  \node at (222.75mm,105mm) {\menubody{102mm}{176mm}};
+\end{tikzpicture}
+\end{document}

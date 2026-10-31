@@ -1,0 +1,13 @@
+% Room menu – A4 portrait.  Build with:  lualatex "\def\theme{navy}\input{room-menu}"
+\documentclass[a4paper]{article}
+\usepackage[margin=0pt]{geometry}
+\usepackage{edenfield}
+\renewcommand\menuscale{1.12}
+\begin{document}
+\thispagestyle{empty}
+\menuframe{12mm}{12mm}{198mm}{285mm}
+\vspace*{0pt}
+\hspace*{0pt}\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=center] at (current page.center) {\menubody{140mm}{235mm}};
+\end{tikzpicture}
+\end{document}
