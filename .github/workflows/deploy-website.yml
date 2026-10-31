@@ -1,15 +1,17 @@
 name: Deploy website
 
-# Publishes both design options to GitHub Pages:
-#   /            chooser page
-#   /classic/    first design (built from the `design-classic` tag)
-#   /refined/    current design (built from main)
+# The live site is whatever release tag was deployed last.
+#   - Push a tag like site-v1.0.0 (use scripts/release.sh)  -> deploys it and creates a GitHub Release
+#   - Run this workflow manually with an older tag           -> rolls the live site back to it
 
 on:
   push:
-    branches: [main]
-    paths: ['website/**', 'scripts/build-pages.sh', '.github/workflows/deploy-website.yml']
+    tags: ['site-v*']
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to (re)deploy, e.g. site-v1.0.0'
+        required: true
 
 permissions:
   contents: read
@@ -18,24 +20,41 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
     steps:
+      - name: Resolve release tag
+        id: tag
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if ! [[ "$TAG" =~ ^site-v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Not a release tag: '$TAG' (expected site-vMAJOR.MINOR.PATCH)" >&2
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # need history and tags to build the classic design
+          ref: refs/tags/${{ steps.tag.outputs.tag }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: website/package-lock.json
-      - run: scripts/build-pages.sh
+      - run: npm ci
+        working-directory: website
+      - run: npm run lint
+        working-directory: website
+      - run: npm run build
+        working-directory: website
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: website/dist
 
   deploy:
     needs: build
@@ -46,3 +65,18 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  release:
+    # Only when a tag was pushed (not for manual rollbacks).
+    if: github.event_name == 'push'
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.build.outputs.tag }}
+        run: gh release create "$TAG" --verify-tag --generate-notes --latest --title "Website ${TAG#site-v}"

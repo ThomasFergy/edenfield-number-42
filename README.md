@@ -15,7 +15,7 @@ Both share the same navy-and-gold look.
 cd website && npm install && npm run dev
 ```
 
-See [`website/README.md`](website/README.md).
+See [`website/README.md`](website/README.md). To publish a new version see [`RELEASING.md`](RELEASING.md).
 
 ## Menus
 
